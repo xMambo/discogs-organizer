@@ -18,10 +18,6 @@ mongoose.connection.once('open', function(){
 var express = require("express");
 var app = express();
 
-//app.get("/url", (req, res, next) => {
-//    res.json(["Miller","Lisa","Michael","Ginger","Food"]);
-//});
-
 
 //set model for db
 const AlbumModel = mongoose.model("album", {
@@ -31,11 +27,17 @@ const AlbumModel = mongoose.model("album", {
 
 //var mykey = MY_KEY;
 
-var libraryArray = [];
 
+app.get("/getalbums", function(req, res) {
+    axios.get("http://api.discogs.com/users/k.miller/collection/folders/0/releases?per_page=5")
+    .then(function(response) {
+console.log(reponse)
+    })
+})
+
+// code from works.js
 axios.get("http://api.discogs.com/users/k.miller/collection/folders/0/releases?per_page=5")
 .then(function(response) {
-    libraryArray.push(response.data.releases);
     
     //console.log(response);
     
@@ -50,10 +52,8 @@ axios.get("http://api.discogs.com/users/k.miller/collection/folders/0/releases?p
         );
         
     }
-    return libraryArray;
 }
 );
-console.log(libraryArray)
 
 
 
