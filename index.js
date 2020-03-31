@@ -1,9 +1,10 @@
 var express = require("express");
 var app = express();
 
-app.get("/url", (req, res, next) => {
+/* app.get("/url", (req, res, next) => {
     res.json(["Miller","Eli","Andrew","Villager","Food"]);
-});
+}); */
+
 // this gets the callback fromt he client
 var axios = require('axios');
 //this is the key from discogs oauth
